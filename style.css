@@ -1,0 +1,15 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#sketchPad {
+    border: solid #000;
+    border-radius: 10px;
+    min-width: 80vw;
+    min-height: 80vh;
+
+    display: flex;
+    flex-wrap: wrap;
+}
