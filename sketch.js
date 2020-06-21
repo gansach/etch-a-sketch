@@ -1,5 +1,5 @@
 let sketchPad = document.getElementById('sketchPad');
-sketchPad.style.background = 'yellow';
+//sketchPad.style.background = 'yellow';
 
 function createGrid(size) {
     let gridSize = size;
@@ -9,16 +9,32 @@ function createGrid(size) {
         box.style.width = `${100 / gridSize}%`;
         //box.style.boxShadow = 'inset 0px 0px 0px 1px #000';
         box.className = 'box';
+        box.dataset.hover = 0;
         sketchPad.appendChild(box);
     }
 }
 
 sketchPad.addEventListener('mouseover', function(event) {
     let box = event.target;
+    let rainbowCheck = document.getElementById('rainbowCheck');
+    let shadeCheck = document.getElementById('shadeCheck');
+
     if (box.className === 'box') {
-        box.style.background = 'red';
-    }
-    
+        if (rainbowCheck.checked) {
+            shadeCheck.checked = false;
+            let randomColor = Math.floor(Math.random()*16777215).toString(16);
+            box.style.background = `#${randomColor}`;
+        } else if (shadeCheck.checked) {
+            box.dataset.hover++;
+            box.style.background = `rgba(0, 0, 0, ${box.dataset.hover / 10})`;           
+        } else {
+            box.style.background = '#000';
+        } 
+    } 
 });
 
-createGrid(100);
+function getGridSize() {
+    let size = prompt('Enter size of grid: ', 16);
+    createGrid(parseInt(size));
+}
+createGrid(2);
