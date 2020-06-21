@@ -7,7 +7,9 @@ function createGrid(size) {
     for (let i = 0; i < gridSize ** 2; i++) {
         let box = document.createElement('div');
         box.style.width = `${100 / gridSize}%`;
-        box.style.boxShadow = 'inset 0px 0px 0px 1px #000';
+        if (document.getElementById('borderCheck').checked) {
+            box.style.boxShadow = 'inset 0px 0px 0px 1px #000';
+        }
         box.className = 'box';
         box.dataset.hover = 0;
         sketchPad.appendChild(box);
